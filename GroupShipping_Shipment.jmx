@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="scheme" elementType="Argument">
+            <stringProp name="Argument.name">scheme</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dir" elementType="Argument">
+            <stringProp name="Argument.name">dir</stringProp>
+            <stringProp name="Argument.value">D:/PerformanceGroupShipping/TestData</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Host_Authorization" elementType="Argument">
+            <stringProp name="Argument.name">Host_Authorization</stringProp>
+            <stringProp name="Argument.value">authentication.test.mcss.intelligentshipper.net</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Host_Shipment" elementType="Argument">
+            <stringProp name="Argument.name">Host_Shipment</stringProp>
+            <stringProp name="Argument.value">api.test.mcss.intelligentshipper.net</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain">www.example.com</stringProp>
+        <stringProp name="HTTPSampler.port"></stringProp>
+        <stringProp name="HTTPSampler.protocol">https</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+        <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">true</boolProp>
+        <boolProp name="useExpires">false</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">D:/PerformanceGroupShipping/TestData/TestDataShipment.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">Test Case,ContentType,DescriptionOfGoods,LabelFormat,Action,ShipmentDate,ServiceCode,CurrencyCode,WeightUnitOfMeasure,ShippingAccountId,ShippingLocationId,Reference1,DepartmentNumber,EoriNumber,ContactName,CompanyName,ContactEmail,ContactPhone,Line1,Line2,Line3,Town,Postcode,County,CountryCode,DestiContactName,DestiCompanyName,DestiContactEmail,DestiContactPhone,DestiLine1,DestiTown,DestiPostcode,DestiCounty,DestiCountryCode,ServiceLevel,EbayVtn,Code,Code2,PackageType,PackageOccurrence,DeclaredWeight,Length,Width,Height,ItemsSkuCode,ItemsPackageOccurrence,ItemsQuantity,ItemsDescription,ItemsValue,ItemsWeight,ItemsHSCode,ItemsCountryOfOrigin,SkuCode2,PackageOccurrence2,Quantity2,Description2,Value2,Weight2,HSCode2,CountryOfOrigin2,ReasonForExport,Incoterms,PreRegistrationNumber,PreRegistrationType,ShippingCharges,OtherCharges,QuotedLandedCost,InvoiceNumber,InvoiceDate,ExportLicenceRequired,Airn,SenderContactName,SenderCompanyName,SenderContactEmail,SenderContactPhone,SenderLine1,SenderLine2,SenderLine3,SenderTown,SenderPostcode,SenderCounty,SenderCountryCode</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${__P(LoopCount,)}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(Thread,)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(RampUp,)}</stringProp>
+        <longProp name="ThreadGroup.start_time">1370726934000</longProp>
+        <longProp name="ThreadGroup.end_time">1370726934000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GroupShippingAuthorization" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="client_id" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">client_id</stringProp>
+                <stringProp name="Argument.value">A79600E98A568A4C85487469D8EBA0BF</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+              <elementProp name="client_secret" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">client_secret</stringProp>
+                <stringProp name="Argument.value">613D92DB24E541B8E46C3BA43375B0D00BD0E0E6A5FBD47FDEBDB92DA3AB80DA</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+              <elementProp name="grant_type" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">grant_type</stringProp>
+                <stringProp name="Argument.value">client_credentials</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${Host_Authorization}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/connect/token</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">access_token</stringProp>
+            <stringProp name="RegexExtractor.regex">{&quot;access_token&quot;:&quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">access_token_notfound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GroupShipmentCreateShipment" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;ShipmentInformation&quot;: {&#xd;
+    &quot;ContentType&quot;: &quot;${ContentType}&quot;,&#xd;
+    &quot;DescriptionOfGoods&quot;: &quot;${DescriptionOfGoods}&quot;,&#xd;
+    &quot;LabelFormat&quot;: &quot;${LabelFormat}&quot;,&#xd;
+    &quot;Action&quot;: &quot;${Action}&quot;,&#xd;
+    &quot;ShipmentDate&quot;: &quot;${__time(yyyy-MM-dd,)}&quot;,&#xd;
+    &quot;ServiceCode&quot;: &quot;${ServiceCode}&quot;,&#xd;
+    &quot;CurrencyCode&quot;: &quot;${CurrencyCode}&quot;,&#xd;
+    &quot;WeightUnitOfMeasure&quot;: &quot;${WeightUnitOfMeasure}&quot;&#xd;
+  },&#xd;
+  &quot;Shipper&quot;: {&#xd;
+    &quot;ShippingAccountId&quot;: &quot;${ShippingAccountId}&quot;,&#xd;
+    &quot;ShippingLocationId&quot;: &quot;${ShippingLocationId}&quot;,&#xd;
+    &quot;Reference1&quot;: &quot;${Reference1}&quot;,&#xd;
+    &quot;DepartmentNumber&quot;: &quot;${DepartmentNumber}&quot;,&#xd;
+    &quot;EoriNumber&quot;: &quot;${EoriNumber}&quot;,&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${ContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${CompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${ContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${ContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${Line1}&quot;,&#xd;
+      &quot;Line2&quot;: &quot;${Line2}&quot;,&#xd;
+      &quot;Line3&quot;: &quot;${Line3}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${Town}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${Postcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${County}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${CountryCode}&quot;&#xd;
+    }&#xd;
+  },&#xd;
+  &quot;Destination&quot;: {&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${DestiContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${DestiCompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${DestiContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${DestiContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${DestiLine1}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${DestiTown}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${DestiPostcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${DestiCounty}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${DestiCountryCode}&quot;&#xd;
+    }&#xd;
+  },&#xd;
+  &quot;CarrierSpecifics&quot;: {&#xd;
+    &quot;ServiceLevel&quot;: &quot;${ServiceLevel}&quot;,&#xd;
+    &quot;EbayVtn&quot;: &quot;${EbayVtn}&quot;,&#xd;
+    &quot;ServiceEnhancements&quot;: [&#xd;
+      {&#xd;
+        &quot;Code&quot;: &quot;${Code}&quot;&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;Code&quot;: &quot;${Code2}&quot;&#xd;
+      }&#xd;
+    ]&#xd;
+  },&#xd;
+  &quot;Packages&quot;: [&#xd;
+    {&#xd;
+      &quot;PackageType&quot;: &quot;${PackageType}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${PackageOccurrence}&quot;,&#xd;
+      &quot;DeclaredWeight&quot;: &quot;${DeclaredWeight}&quot;,&#xd;
+      &quot;Dimensions&quot;: {&#xd;
+        &quot;Length&quot;: &quot;${Length}&quot;,&#xd;
+        &quot;Width&quot;: &quot;${Width}&quot;,&#xd;
+        &quot;Height&quot;: &quot;${Height}&quot;&#xd;
+      }&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;Items&quot;: [&#xd;
+    {&#xd;
+      &quot;SkuCode&quot;: &quot;${ItemsSkuCode}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${ItemsPackageOccurrence}&quot;,&#xd;
+      &quot;Quantity&quot;: &quot;${ItemsQuantity}&quot;,&#xd;
+      &quot;Description&quot;: &quot;${ItemsDescription}&quot;,&#xd;
+      &quot;Value&quot;: &quot;${ItemsValue}&quot;,&#xd;
+      &quot;Weight&quot;: &quot;${ItemsWeight}&quot;,&#xd;
+      &quot;HSCode&quot;: &quot;${ItemsHSCode}&quot;,&#xd;
+      &quot;CountryOfOrigin&quot;: &quot;${ItemsCountryOfOrigin}&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;SkuCode&quot;: &quot;${SkuCode2}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${PackageOccurrence2}&quot;,&#xd;
+      &quot;Quantity&quot;: &quot;${Quantity2}&quot;,&#xd;
+      &quot;Description&quot;: &quot;${Description2}&quot;,&#xd;
+      &quot;Value&quot;: &quot;${Value2}&quot;,&#xd;
+      &quot;Weight&quot;: &quot;${Weight2}&quot;,&#xd;
+      &quot;HSCode&quot;: &quot;${HSCode2}&quot;,&#xd;
+      &quot;CountryOfOrigin&quot;: &quot;${CountryOfOrigin2}&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;Customs&quot;: {&#xd;
+    &quot;ReasonForExport&quot;: &quot;${ReasonForExport}&quot;,&#xd;
+    &quot;Incoterms&quot;: &quot;${Incoterms}&quot;,&#xd;
+    &quot;PreRegistrationNumber&quot;: &quot;${PreRegistrationNumber}&quot;,&#xd;
+    &quot;PreRegistrationType&quot;: &quot;${PreRegistrationType}&quot;,&#xd;
+    &quot;ShippingCharges&quot;: &quot;${ShippingCharges}&quot;,&#xd;
+    &quot;OtherCharges&quot;: &quot;${OtherCharges}&quot;,&#xd;
+    &quot;QuotedLandedCost&quot;: &quot;${QuotedLandedCost}&quot;,&#xd;
+    &quot;InvoiceNumber&quot;: &quot;${InvoiceNumber}&quot;,&#xd;
+    &quot;InvoiceDate&quot;: &quot;${InvoiceDate}&quot;,&#xd;
+    &quot;ExportLicenceRequired&quot;: &quot;${ExportLicenceRequired}&quot;,&#xd;
+    &quot;Airn&quot;: &quot;${Airn}&quot;&#xd;
+  },&#xd;
+  &quot;ReturnToSender&quot;: {&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${SenderContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${SenderCompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${SenderContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${SenderContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${SenderLine1}&quot;,&#xd;
+      &quot;Line2&quot;: &quot;${SenderLine2}&quot;,&#xd;
+      &quot;Line3&quot;: &quot;${SenderLine3}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${SenderTown}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${SenderPostcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${SenderCounty}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${SenderCountryCode}&quot;&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${Host_Shipment}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/v4/shipments/rm</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${access_token}</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">UniqueId</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;UniqueId&quot;: &quot;(.*?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">UniqueId_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ShipmentId</stringProp>
+            <stringProp name="RegexExtractor.regex">ShipmentId&quot;: &quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">ShipmentId_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">TrackingNumber</stringProp>
+            <stringProp name="RegexExtractor.regex"> &quot;TrackingNumber&quot;: &quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">TrackingNumber_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">UniqueId_1 = vars.get(&quot;UniqueId&quot;);
+ShipmentId_1 = vars.get(&quot;ShipmentId&quot;);
+TrackingNumber_1 = vars.get(&quot;TrackingNumber&quot;);
+f = new FileOutputStream(&quot;${dir}/Confirm_Shipment_API_V4.csv&quot;, true);
+p = new PrintStream(f);
+this.interpreter.setOut(p);
+print(UniqueId_1+&quot;,&quot;+ShipmentId_1+&quot;,&quot;+TrackingNumber_1);
+f.close();</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1370726934000</longProp>
+        <longProp name="ThreadGroup.end_time">1370726934000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GroupShippingAuthorization" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="client_id" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">client_id</stringProp>
+                <stringProp name="Argument.value">A79600E98A568A4C85487469D8EBA0BF</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+              <elementProp name="client_secret" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">client_secret</stringProp>
+                <stringProp name="Argument.value">613D92DB24E541B8E46C3BA43375B0D00BD0E0E6A5FBD47FDEBDB92DA3AB80DA</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+              <elementProp name="grant_type" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">grant_type</stringProp>
+                <stringProp name="Argument.value">client_credentials</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${Host_Authorization}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/connect/token</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">access_token</stringProp>
+            <stringProp name="RegexExtractor.regex">{&quot;access_token&quot;:&quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">access_token_notfound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GroupShipmentCreateShipment" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;ShipmentInformation&quot;: {&#xd;
+    &quot;ContentType&quot;: &quot;${ContentType}&quot;,&#xd;
+    &quot;DescriptionOfGoods&quot;: &quot;${DescriptionOfGoods}&quot;,&#xd;
+    &quot;LabelFormat&quot;: &quot;${LabelFormat}&quot;,&#xd;
+    &quot;Action&quot;: &quot;${Action}&quot;,&#xd;
+    &quot;ShipmentDate&quot;: &quot;${__time(yyyy-MM-dd,)}&quot;,&#xd;
+    &quot;ServiceCode&quot;: &quot;${ServiceCode}&quot;,&#xd;
+    &quot;CurrencyCode&quot;: &quot;${CurrencyCode}&quot;,&#xd;
+    &quot;WeightUnitOfMeasure&quot;: &quot;${WeightUnitOfMeasure}&quot;&#xd;
+  },&#xd;
+  &quot;Shipper&quot;: {&#xd;
+    &quot;ShippingAccountId&quot;: &quot;${ShippingAccountId}&quot;,&#xd;
+    &quot;ShippingLocationId&quot;: &quot;${ShippingLocationId}&quot;,&#xd;
+    &quot;Reference1&quot;: &quot;${Reference1}&quot;,&#xd;
+    &quot;DepartmentNumber&quot;: &quot;${DepartmentNumber}&quot;,&#xd;
+    &quot;EoriNumber&quot;: &quot;${EoriNumber}&quot;,&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${ContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${CompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${ContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${ContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${Line1}&quot;,&#xd;
+      &quot;Line2&quot;: &quot;${Line2}&quot;,&#xd;
+      &quot;Line3&quot;: &quot;${Line3}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${Town}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${Postcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${County}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${CountryCode}&quot;&#xd;
+    }&#xd;
+  },&#xd;
+  &quot;Destination&quot;: {&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${DestiContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${DestiCompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${DestiContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${DestiContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${DestiLine1}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${DestiTown}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${DestiPostcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${DestiCounty}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${DestiCountryCode}&quot;&#xd;
+    }&#xd;
+  },&#xd;
+  &quot;CarrierSpecifics&quot;: {&#xd;
+    &quot;ServiceLevel&quot;: &quot;${ServiceLevel}&quot;,&#xd;
+    &quot;EbayVtn&quot;: &quot;${EbayVtn}&quot;,&#xd;
+    &quot;ServiceEnhancements&quot;: [&#xd;
+      {&#xd;
+        &quot;Code&quot;: &quot;${Code}&quot;&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;Code&quot;: &quot;${Code2}&quot;&#xd;
+      }&#xd;
+    ]&#xd;
+  },&#xd;
+  &quot;Packages&quot;: [&#xd;
+    {&#xd;
+      &quot;PackageType&quot;: &quot;${PackageType}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${PackageOccurrence}&quot;,&#xd;
+      &quot;DeclaredWeight&quot;: &quot;${DeclaredWeight}&quot;,&#xd;
+      &quot;Dimensions&quot;: {&#xd;
+        &quot;Length&quot;: &quot;${Length}&quot;,&#xd;
+        &quot;Width&quot;: &quot;${Width}&quot;,&#xd;
+        &quot;Height&quot;: &quot;${Height}&quot;&#xd;
+      }&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;Items&quot;: [&#xd;
+    {&#xd;
+      &quot;SkuCode&quot;: &quot;${ItemsSkuCode}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${ItemsPackageOccurrence}&quot;,&#xd;
+      &quot;Quantity&quot;: &quot;${ItemsQuantity}&quot;,&#xd;
+      &quot;Description&quot;: &quot;${ItemsDescription}&quot;,&#xd;
+      &quot;Value&quot;: &quot;${ItemsValue}&quot;,&#xd;
+      &quot;Weight&quot;: &quot;${ItemsWeight}&quot;,&#xd;
+      &quot;HSCode&quot;: &quot;${ItemsHSCode}&quot;,&#xd;
+      &quot;CountryOfOrigin&quot;: &quot;${ItemsCountryOfOrigin}&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;SkuCode&quot;: &quot;${SkuCode2}&quot;,&#xd;
+      &quot;PackageOccurrence&quot;: &quot;${PackageOccurrence2}&quot;,&#xd;
+      &quot;Quantity&quot;: &quot;${Quantity2}&quot;,&#xd;
+      &quot;Description&quot;: &quot;${Description2}&quot;,&#xd;
+      &quot;Value&quot;: &quot;${Value2}&quot;,&#xd;
+      &quot;Weight&quot;: &quot;${Weight2}&quot;,&#xd;
+      &quot;HSCode&quot;: &quot;${HSCode2}&quot;,&#xd;
+      &quot;CountryOfOrigin&quot;: &quot;${CountryOfOrigin2}&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;Customs&quot;: {&#xd;
+    &quot;ReasonForExport&quot;: &quot;${ReasonForExport}&quot;,&#xd;
+    &quot;Incoterms&quot;: &quot;${Incoterms}&quot;,&#xd;
+    &quot;PreRegistrationNumber&quot;: &quot;${PreRegistrationNumber}&quot;,&#xd;
+    &quot;PreRegistrationType&quot;: &quot;${PreRegistrationType}&quot;,&#xd;
+    &quot;ShippingCharges&quot;: &quot;${ShippingCharges}&quot;,&#xd;
+    &quot;OtherCharges&quot;: &quot;${OtherCharges}&quot;,&#xd;
+    &quot;QuotedLandedCost&quot;: &quot;${QuotedLandedCost}&quot;,&#xd;
+    &quot;InvoiceNumber&quot;: &quot;${InvoiceNumber}&quot;,&#xd;
+    &quot;InvoiceDate&quot;: &quot;${InvoiceDate}&quot;,&#xd;
+    &quot;ExportLicenceRequired&quot;: &quot;${ExportLicenceRequired}&quot;,&#xd;
+    &quot;Airn&quot;: &quot;${Airn}&quot;&#xd;
+  },&#xd;
+  &quot;ReturnToSender&quot;: {&#xd;
+    &quot;Address&quot;: {&#xd;
+      &quot;ContactName&quot;: &quot;${SenderContactName}&quot;,&#xd;
+      &quot;CompanyName&quot;: &quot;${SenderCompanyName}&quot;,&#xd;
+      &quot;ContactEmail&quot;: &quot;${SenderContactEmail}&quot;,&#xd;
+      &quot;ContactPhone&quot;: &quot;${SenderContactPhone}&quot;,&#xd;
+      &quot;Line1&quot;: &quot;${SenderLine1}&quot;,&#xd;
+      &quot;Line2&quot;: &quot;${SenderLine2}&quot;,&#xd;
+      &quot;Line3&quot;: &quot;${SenderLine3}&quot;,&#xd;
+      &quot;Town&quot;: &quot;${SenderTown}&quot;,&#xd;
+      &quot;Postcode&quot;: &quot;${SenderPostcode}&quot;,&#xd;
+      &quot;County&quot;: &quot;${SenderCounty}&quot;,&#xd;
+      &quot;CountryCode&quot;: &quot;${SenderCountryCode}&quot;&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${Host_Shipment}</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/v4/shipments/rm</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Authorization" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${access_token}</stringProp>
+              </elementProp>
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="Accept" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">UniqueId</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;UniqueId&quot;: &quot;(.*?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">UniqueId_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">ShipmentId</stringProp>
+            <stringProp name="RegexExtractor.regex">ShipmentId&quot;: &quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">ShipmentId_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">TrackingNumber</stringProp>
+            <stringProp name="RegexExtractor.regex"> &quot;TrackingNumber&quot;: &quot;(.*?)&quot;,</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">TrackingNumber_NotFound</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">UniqueId_1 = vars.get(&quot;UniqueId&quot;);
+ShipmentId_1 = vars.get(&quot;ShipmentId&quot;);
+TrackingNumber_1 = vars.get(&quot;TrackingNumber&quot;);
+f = new FileOutputStream(&quot;${dir}/Confirm_Shipment_API_V4.csv&quot;, true);
+p = new PrintStream(f);
+this.interpreter.setOut(p);
+print(UniqueId_1+&quot;,&quot;+ShipmentId_1+&quot;,&quot;+TrackingNumber_1);
+f.close();</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
