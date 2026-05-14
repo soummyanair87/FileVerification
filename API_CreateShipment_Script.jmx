@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="host" elementType="Argument">
+            <stringProp name="Argument.name">host</stringProp>
+            <stringProp name="Argument.value">performance-preprod.intelligentshipper.net</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="scheme" elementType="Argument">
+            <stringProp name="Argument.name">scheme</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="InputFileLocation" elementType="Argument">
+            <stringProp name="Argument.name">InputFileLocation</stringProp>
+            <stringProp name="Argument.value">E:\InterSoftQA_Azure\IntersoftQA\PerformamceTesting\Scripts</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ResultFileLocation" elementType="Argument">
+            <stringProp name="Argument.name">ResultFileLocation</stringProp>
+            <stringProp name="Argument.value">E:\InterSoftQA_Azure\IntersoftQA\PerformamceTesting\Results</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">${InputFileLocation}/TestData500.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">Test Case,transactionId,applicationId,userId,password,shipperCompanyName,shipperAddressLine1,shipperAddressLine2,shipperAddressLine3,shipperCity,shipperCounty,shipperCountryCode,shipperPostCode,shipperContactName,shipperPhoneNumber,shipperVatNumber,shipperEmailAddress,shipperReference,shipperDeptCode,destinationCompanyName,destinationAddressLine1,destinationAddressLine2,destinationAddressLine3,destinationCity,destinationCounty,destinationCountryCode,destinationPostCode,destinationContactName,destinationPhoneNumber,destinationVatNumber,destinationEmailAddress,shipmentDate,serviceCode,postingLocation,serviceLevel,serviceFormat,safePlace,serviceEnhancementCode,totalPackages,totalWeight,weightId,unitOfMeasurement,product,descriptionOfGoods,declaredValue,declaredCurrencyCode,terms,labelImageFormat,silentPrintProfile,shipmentAction,packageId,packageTypeName,weight,length,width,height,itemHsCode,itemDescription,itemQuantity,itemValue,itemCOO,itemSku,itemNetWeight,ErrorCode,ErrorDescription</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">true</boolProp>
+        <boolProp name="useExpires">true</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="API" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${__P(LoopCount,)}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(Thread,)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(RampUp,)}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration,)}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">20000</stringProp>
+          <stringProp name="RandomTimer.range">20000</stringProp>
+        </UniformRandomTimer>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CreateShipmentRequest" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xd;
+&lt;createShipmentRequest&gt;&#xd;
+  &lt;integrationHeader&gt;&#xd;
+    &lt;transactionId&gt;BCMYH-ZOOFY-XPRKB-FKCCT-NYUGH-ZY&lt;/transactionId&gt;&#xd;
+    &lt;applicationId&gt;${applicationId}&lt;/applicationId&gt;&#xd;
+    &lt;userId&gt;${userId}&lt;/userId&gt;&#xd;
+    &lt;password&gt;${password}&lt;/password&gt;&#xd;
+  &lt;/integrationHeader&gt;&#xd;
+  &lt;shipment&gt;&#xd;
+    &lt;shipper&gt;&#xd;
+      &lt;shipperCompanyName&gt;${shipperCompanyName}&lt;/shipperCompanyName&gt;&#xd;
+      &lt;shipperAddressLine1&gt;${shipperAddressLine1}&lt;/shipperAddressLine1&gt;&#xd;
+      &lt;shipperAddressLine2&gt;${shipperAddressLine2}&lt;/shipperAddressLine2&gt;&#xd;
+      &lt;shipperAddressLine3&gt;${shipperAddressLine3}&lt;/shipperAddressLine3&gt;&#xd;
+      &lt;shipperCity&gt;${shipperCity}&lt;/shipperCity&gt;&#xd;
+      &lt;shipperCounty&gt;${shipperCounty}&lt;/shipperCounty&gt;&#xd;
+      &lt;shipperCountryCode&gt;${shipperCountryCode}&lt;/shipperCountryCode&gt;&#xd;
+      &lt;shipperPostCode&gt;${shipperPostCode}&lt;/shipperPostCode&gt;&#xd;
+      &lt;shipperContactName&gt;${shipperContactName} &lt;/shipperContactName&gt;&#xd;
+      &lt;shipperPhoneNumber&gt;${shipperPhoneNumber}&lt;/shipperPhoneNumber&gt;&#xd;
+      &lt;shipperVatNumber&gt;${shipperVatNumber}&lt;/shipperVatNumber&gt;&#xd;
+      &lt;shipperEmailAddress&gt;${shipperEmailAddress}&lt;/shipperEmailAddress&gt;&#xd;
+      &lt;shipperReference&gt;${shipperReference}&lt;/shipperReference&gt;&#xd;
+      &lt;shipperDeptCode&gt;${shipperDeptCode}&lt;/shipperDeptCode&gt;&#xd;
+    &lt;/shipper&gt;&#xd;
+    &lt;destination&gt;&#xd;
+      &lt;destinationCompanyName&gt;${destinationCompanyName}&lt;/destinationCompanyName&gt;&#xd;
+      &lt;destinationAddressLine1&gt;${destinationAddressLine1}&lt;/destinationAddressLine1&gt;&#xd;
+      &lt;destinationAddressLine2 /&gt;&#xd;
+      &lt;destinationAddressLine3 /&gt;&#xd;
+      &lt;destinationCity&gt;${destinationCity}&lt;/destinationCity&gt;&#xd;
+      &lt;destinationCounty&gt;${destinationCounty}&lt;/destinationCounty&gt;&#xd;
+      &lt;destinationCountryCode&gt;${destinationCountryCode}&lt;/destinationCountryCode&gt;&#xd;
+      &lt;destinationPostCode&gt;${destinationPostCode}&lt;/destinationPostCode&gt;&#xd;
+      &lt;destinationContactName&gt;${destinationContactName}&lt;/destinationContactName&gt;&#xd;
+      &lt;destinationPhoneNumber&gt;${destinationPhoneNumber}&lt;/destinationPhoneNumber&gt;&#xd;
+      &lt;destinationVatNumber&gt;${destinationVatNumber}&lt;/destinationVatNumber&gt;&#xd;
+      &lt;destinationEmailAddress&gt;${destinationEmailAddress}&lt;/destinationEmailAddress&gt;&#xd;
+    &lt;/destination&gt;&#xd;
+    &lt;shipmentInformation&gt;&#xd;
+      &lt;shipmentDate&gt;${__time(yyyy-MM-dd)}&lt;/shipmentDate&gt;&#xd;
+      &lt;serviceCode&gt;${serviceCode}&lt;/serviceCode&gt;&#xd;
+      &lt;serviceOptions&gt;&#xd;
+        &lt;postingLocation&gt;${postingLocation}&lt;/postingLocation&gt;&#xd;
+       &lt;serviceLevel&gt;${serviceLevel}&lt;/serviceLevel&gt;&#xd;
+        &lt;serviceFormat&gt;${serviceFormat}&lt;/serviceFormat&gt;&#xd;
+        &lt;safePlace /&gt;&#xd;
+      &lt;/serviceOptions&gt;&#xd;
+      &lt;totalPackages&gt;${totalPackages}&lt;/totalPackages&gt;&#xd;
+      &lt;totalWeight&gt;${totalWeight}&lt;/totalWeight&gt;&#xd;
+      &lt;weightId&gt;${weightId}&lt;/weightId&gt;&#xd;
+      &lt;unitOfMeasurement&gt;${unitOfMeasurement}&lt;/unitOfMeasurement&gt;&#xd;
+      &lt;product&gt;${product}&lt;/product&gt;&#xd;
+      &lt;descriptionOfGoods&gt;${descriptionOfGoods}&lt;/descriptionOfGoods&gt;&#xd;
+      &lt;declaredValue&gt;${declaredValue}&lt;/declaredValue&gt;&#xd;
+      &lt;declaredCurrencyCode&gt;${declaredCurrencyCode}&lt;/declaredCurrencyCode&gt;&#xd;
+      &lt;terms&gt;${terms}&lt;/terms&gt;&#xd;
+      &lt;silentPrintProfile /&gt;&#xd;
+      &lt;shipmentAction /&gt;&#xd;
+      &lt;labelImageFormat&gt;${labelImageFormat}&lt;/labelImageFormat&gt;&#xd;
+      &lt;packages&gt;&#xd;
+        &lt;package&gt;&#xd;
+          &lt;packageId&gt;${packageId}&lt;/packageId&gt;&#xd;
+          &lt;weight&gt;${weight}&lt;/weight&gt;&#xd;
+          &lt;length /&gt;&#xd;
+          &lt;width /&gt;&#xd;
+          &lt;height /&gt;&#xd;
+        &lt;/package&gt;&#xd;
+      &lt;/packages&gt;&#xd;
+      &lt;itemInformation&gt;&#xd;
+        &lt;packageId&gt;${packageId}&lt;/packageId&gt;&#xd;
+        &lt;itemHsCode&gt;${itemHsCode}&lt;/itemHsCode&gt;&#xd;
+        &lt;itemDescription&gt;${itemDescription}&lt;/itemDescription&gt;&#xd;
+        &lt;itemQuantity&gt;${itemQuantity}&lt;/itemQuantity&gt;&#xd;
+        &lt;itemValue&gt;${itemValue}&lt;/itemValue&gt;&#xd;
+        &lt;itemCOO /&gt;&#xd;
+        &lt;itemSku&gt;${itemSku}&lt;/itemSku&gt;&#xd;
+        &lt;itemNetWeight&gt;${itemNetWeight}&lt;/itemNetWeight&gt;&#xd;
+      &lt;/itemInformation&gt;&#xd;
+    &lt;/shipmentInformation&gt;&#xd;
+  &lt;/shipment&gt;&#xd;
+&lt;/createShipmentRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${host}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1.6/shipments/createShipmentRequest</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1870512352">trackingNumber</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="carrierCode" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">carrierCode</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;carrierCode&gt;(.*?)&lt;/carrierCode&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="trackingNumber" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">trackingNumber</stringProp>
+            <stringProp name="RegexExtractor.regex">trackingNumber&gt;(.*?)&lt;/trackingNumber&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+
+String variable = vars.get(&quot;carrierCode&quot;);
+String Location = vars.get(&quot;TestDataFileLocation&quot;);
+f = new FileOutputStream(&quot;&quot;+Location+&quot;/CarrierCodeToConfirmShipment.txt&quot;, true);
+p = new PrintStream(f);
+f.flush();
+this.interpreter.setOut(p);
+print(variable);
+f.close();</stringProp>
+            <stringProp name="scriptLanguage">beanshell</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">${ResultFileLocation}\Res_500VU_API_${__time(,)}.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">${ResultFileLocation}\Res_500VU_API_${__time(,)}.log</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>true</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>true</responseData>
+            <samplerData>true</samplerData>
+            <xml>true</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>true</responseHeaders>
+            <requestHeaders>true</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <fileName>true</fileName>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">${ResultFileLocation}\Res_500VU_API_${__time(,)}.xml</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="API" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration,)}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <UniformRandomTimer guiclass="UniformRandomTimerGui" testclass="UniformRandomTimer" testname="Uniform Random Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">20000</stringProp>
+          <stringProp name="RandomTimer.range">20000</stringProp>
+        </UniformRandomTimer>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CreateShipmentRequest" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xd;
+&lt;createShipmentRequest&gt;&#xd;
+  &lt;integrationHeader&gt;&#xd;
+    &lt;transactionId&gt;BCMYH-ZOOFY-XPRKB-FKCCT-NYUGH-ZY&lt;/transactionId&gt;&#xd;
+    &lt;applicationId&gt;${applicationId}&lt;/applicationId&gt;&#xd;
+    &lt;userId&gt;${userId}&lt;/userId&gt;&#xd;
+    &lt;password&gt;${password}&lt;/password&gt;&#xd;
+  &lt;/integrationHeader&gt;&#xd;
+  &lt;shipment&gt;&#xd;
+    &lt;shipper&gt;&#xd;
+      &lt;shipperCompanyName&gt;${shipperCompanyName}&lt;/shipperCompanyName&gt;&#xd;
+      &lt;shipperAddressLine1&gt;${shipperAddressLine1}&lt;/shipperAddressLine1&gt;&#xd;
+      &lt;shipperAddressLine2&gt;${shipperAddressLine2}&lt;/shipperAddressLine2&gt;&#xd;
+      &lt;shipperAddressLine3&gt;${shipperAddressLine3}&lt;/shipperAddressLine3&gt;&#xd;
+      &lt;shipperCity&gt;${shipperCity}&lt;/shipperCity&gt;&#xd;
+      &lt;shipperCounty&gt;${shipperCounty}&lt;/shipperCounty&gt;&#xd;
+      &lt;shipperCountryCode&gt;${shipperCountryCode}&lt;/shipperCountryCode&gt;&#xd;
+      &lt;shipperPostCode&gt;${shipperPostCode}&lt;/shipperPostCode&gt;&#xd;
+      &lt;shipperContactName&gt;${shipperContactName} &lt;/shipperContactName&gt;&#xd;
+      &lt;shipperPhoneNumber&gt;${shipperPhoneNumber}&lt;/shipperPhoneNumber&gt;&#xd;
+      &lt;shipperVatNumber&gt;${shipperVatNumber}&lt;/shipperVatNumber&gt;&#xd;
+      &lt;shipperEmailAddress&gt;${shipperEmailAddress}&lt;/shipperEmailAddress&gt;&#xd;
+      &lt;shipperReference&gt;${shipperReference}&lt;/shipperReference&gt;&#xd;
+      &lt;shipperDeptCode&gt;${shipperDeptCode}&lt;/shipperDeptCode&gt;&#xd;
+    &lt;/shipper&gt;&#xd;
+    &lt;destination&gt;&#xd;
+      &lt;destinationCompanyName&gt;${destinationCompanyName}&lt;/destinationCompanyName&gt;&#xd;
+      &lt;destinationAddressLine1&gt;${destinationAddressLine1}&lt;/destinationAddressLine1&gt;&#xd;
+      &lt;destinationAddressLine2 /&gt;&#xd;
+      &lt;destinationAddressLine3 /&gt;&#xd;
+      &lt;destinationCity&gt;${destinationCity}&lt;/destinationCity&gt;&#xd;
+      &lt;destinationCounty&gt;${destinationCounty}&lt;/destinationCounty&gt;&#xd;
+      &lt;destinationCountryCode&gt;${destinationCountryCode}&lt;/destinationCountryCode&gt;&#xd;
+      &lt;destinationPostCode&gt;${destinationPostCode}&lt;/destinationPostCode&gt;&#xd;
+      &lt;destinationContactName&gt;${destinationContactName}&lt;/destinationContactName&gt;&#xd;
+      &lt;destinationPhoneNumber&gt;${destinationPhoneNumber}&lt;/destinationPhoneNumber&gt;&#xd;
+      &lt;destinationVatNumber&gt;${destinationVatNumber}&lt;/destinationVatNumber&gt;&#xd;
+      &lt;destinationEmailAddress&gt;${destinationEmailAddress}&lt;/destinationEmailAddress&gt;&#xd;
+    &lt;/destination&gt;&#xd;
+    &lt;shipmentInformation&gt;&#xd;
+      &lt;shipmentDate&gt;${__time(yyyy-MM-dd)}&lt;/shipmentDate&gt;&#xd;
+      &lt;serviceCode&gt;${serviceCode}&lt;/serviceCode&gt;&#xd;
+      &lt;serviceOptions&gt;&#xd;
+        &lt;postingLocation&gt;${postingLocation}&lt;/postingLocation&gt;&#xd;
+       &lt;serviceLevel&gt;${serviceLevel}&lt;/serviceLevel&gt;&#xd;
+        &lt;serviceFormat&gt;${serviceFormat}&lt;/serviceFormat&gt;&#xd;
+        &lt;safePlace /&gt;&#xd;
+      &lt;/serviceOptions&gt;&#xd;
+      &lt;totalPackages&gt;${totalPackages}&lt;/totalPackages&gt;&#xd;
+      &lt;totalWeight&gt;${totalWeight}&lt;/totalWeight&gt;&#xd;
+      &lt;weightId&gt;${weightId}&lt;/weightId&gt;&#xd;
+      &lt;unitOfMeasurement&gt;${unitOfMeasurement}&lt;/unitOfMeasurement&gt;&#xd;
+      &lt;product&gt;${product}&lt;/product&gt;&#xd;
+      &lt;descriptionOfGoods&gt;${descriptionOfGoods}&lt;/descriptionOfGoods&gt;&#xd;
+      &lt;declaredValue&gt;${declaredValue}&lt;/declaredValue&gt;&#xd;
+      &lt;declaredCurrencyCode&gt;${declaredCurrencyCode}&lt;/declaredCurrencyCode&gt;&#xd;
+      &lt;terms&gt;${terms}&lt;/terms&gt;&#xd;
+      &lt;silentPrintProfile /&gt;&#xd;
+      &lt;shipmentAction /&gt;&#xd;
+      &lt;labelImageFormat&gt;${labelImageFormat}&lt;/labelImageFormat&gt;&#xd;
+      &lt;packages&gt;&#xd;
+        &lt;package&gt;&#xd;
+          &lt;packageId&gt;${packageId}&lt;/packageId&gt;&#xd;
+          &lt;weight&gt;${weight}&lt;/weight&gt;&#xd;
+          &lt;length /&gt;&#xd;
+          &lt;width /&gt;&#xd;
+          &lt;height /&gt;&#xd;
+        &lt;/package&gt;&#xd;
+      &lt;/packages&gt;&#xd;
+      &lt;itemInformation&gt;&#xd;
+        &lt;packageId&gt;${packageId}&lt;/packageId&gt;&#xd;
+        &lt;itemHsCode&gt;${itemHsCode}&lt;/itemHsCode&gt;&#xd;
+        &lt;itemDescription&gt;${itemDescription}&lt;/itemDescription&gt;&#xd;
+        &lt;itemQuantity&gt;${itemQuantity}&lt;/itemQuantity&gt;&#xd;
+        &lt;itemValue&gt;${itemValue}&lt;/itemValue&gt;&#xd;
+        &lt;itemCOO /&gt;&#xd;
+        &lt;itemSku&gt;${itemSku}&lt;/itemSku&gt;&#xd;
+        &lt;itemNetWeight&gt;${itemNetWeight}&lt;/itemNetWeight&gt;&#xd;
+      &lt;/itemInformation&gt;&#xd;
+    &lt;/shipmentInformation&gt;&#xd;
+  &lt;/shipment&gt;&#xd;
+&lt;/createShipmentRequest&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${host}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1.6/shipments/createShipmentRequest</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1870512352">trackingNumber</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="carrierCode" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">carrierCode</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;carrierCode&gt;(.*?)&lt;/carrierCode&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="trackingNumber" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">trackingNumber</stringProp>
+            <stringProp name="RegexExtractor.regex">trackingNumber&gt;(.*?)&lt;/trackingNumber&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.io.*;
+import java.util.*;
+
+String variable = vars.get(&quot;carrierCode&quot;);
+String Location = vars.get(&quot;TestDataFileLocation&quot;);
+f = new FileOutputStream(&quot;&quot;+Location+&quot;/CarrierCodeToConfirmShipment.txt&quot;, true);
+p = new PrintStream(f);
+f.flush();
+this.interpreter.setOut(p);
+print(variable);
+f.close();</stringProp>
+            <stringProp name="scriptLanguage">beanshell</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
